@@ -1,0 +1,23 @@
+{
+  "name": "redchain",
+  "version": "0.5.0",
+  "description": "ts framework with an functional approach",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plusnew/plusnew.git"
+  },
+  "author": "Carlo Jeske",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/plusnew/plusnew/issues"
+  },
+  "homepage": "https://github.com/plusnew/plusnew#readme",
+  "devDependencies": {
+    "tslint-config-airbnb": "^5.3.0",
+    "typescript": "^2.5.2"
+  }
+}
