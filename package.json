@@ -1,7 +1,7 @@
 {
   "name": "redchain",
   "version": "0.5.1",
-  "description": "ts framework with an functional approach",
+  "description": "ts based flow-like store",
   "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
