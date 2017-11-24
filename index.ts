@@ -1,10 +1,14 @@
+const initialAction = { type: 'store::init' };
+
 export default class RedChain<stateType, actionType>{
   public state: stateType;
-  private reducers: ((state: stateType, action: actionType, previousState: stateType) => stateType)[];
+  private initialAction = initialAction;
+  private reducers: ((state: stateType, action: actionType | typeof initialAction, previousState: stateType) => stateType)[];
   private onChanges: (() => void)[];
-  constructor(reducer: ((state: stateType, action: actionType, previousState: stateType) => stateType)) {
+  constructor(reducer: ((state: stateType, action: actionType | typeof initialAction, previousState: stateType) => stateType)) {
     this.reducers = [reducer];
     this.onChanges = [];
+    this.state = reducer(null as any, this.initialAction, null as any);
   }
 
   public dispatch(action: actionType) {
@@ -24,7 +28,7 @@ export default class RedChain<stateType, actionType>{
     return this;
   }
 
-  public addReducer(reducer: (state: stateType | null, action: actionType) => stateType) {
+  public addReducer(reducer: (state: stateType | null, action: actionType | typeof initialAction) => stateType) {
     this.reducers.push(reducer);
 
     return this;
