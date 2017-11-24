@@ -3,38 +3,28 @@ const initialAction = { type: 'store::init' };
 export default class RedChain<stateType, actionType>{
   public state: stateType;
   private initialAction = initialAction;
-  private reducers: ((state: stateType, action: actionType | typeof initialAction, previousState: stateType) => stateType)[];
-  private onChanges: (() => void)[];
-  constructor(reducer: ((state: stateType | null, action: actionType | typeof initialAction, previousState: stateType | null) => stateType)) {
-    this.reducers = [reducer];
+  private reducer: ((state: stateType | null, action: actionType | typeof initialAction) => stateType);
+  private onChanges: ((lastAction: actionType) => void)[];
+  constructor(reducer: ((state: stateType | null, action: actionType | typeof initialAction) => stateType)) {
+    this.reducer = reducer;
     this.onChanges = [];
-    this.state = reducer(null, this.initialAction, null);
+    this.state = reducer(null, this.initialAction);
   }
 
   public dispatch(action: actionType) {
-    let currentState = this.state || null;
-
-    this.reducers.forEach((reducer) => {
-      currentState = reducer(currentState, action, this.state || null);
-    });
+    const currentState = this.reducer(this.state, action);
 
     if (this.state !== currentState) {
       this.state = currentState;
       this.onChanges.forEach((onChange) => {
-        onChange();
+        onChange(action);
       });
     }
 
     return this;
   }
 
-  public addReducer(reducer: (state: stateType | null, action: actionType | typeof initialAction) => stateType) {
-    this.reducers.push(reducer);
-
-    return this;
-  }
-
-  public addOnChange(onChange: () => void) {
+  public addOnChange(onChange: (lastAction: actionType) => void) {
     this.onChanges.push(onChange);
 
     return this;
