@@ -5,10 +5,10 @@ export default class RedChain<stateType, actionType>{
   private initialAction = initialAction;
   private reducers: ((state: stateType, action: actionType | typeof initialAction, previousState: stateType) => stateType)[];
   private onChanges: (() => void)[];
-  constructor(reducer: ((state: stateType, action: actionType | typeof initialAction, previousState: stateType) => stateType)) {
+  constructor(reducer: ((state: stateType | null, action: actionType | typeof initialAction, previousState: stateType | null) => stateType)) {
     this.reducers = [reducer];
     this.onChanges = [];
-    this.state = reducer(null as any, this.initialAction, null as any);
+    this.state = reducer(null, this.initialAction, null);
   }
 
   public dispatch(action: actionType) {
