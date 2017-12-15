@@ -62,8 +62,8 @@ const store: store = <stateType, actionType>(reducer: reducer<stateType, actionT
       onChanges = onChanges.filter((currentOnChange: onChangeCallback<actionType>) => currentOnChange !== removeOnChange);
 
       return previousLength !== onChanges.length;
-    }
-  }
-}
+    },
+  };
+};
 
 export default store;

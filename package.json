@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/plusnew/plusnew#readme",
   "devDependencies": {
+    "tslint": "^5.8.0",
     "tslint-config-airbnb": "^5.3.0",
     "typescript": "^2.5.2"
   }
