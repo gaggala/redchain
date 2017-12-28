@@ -1,9 +1,11 @@
 {
   "name": "redchain",
-  "version": "0.5.7",
+  "version": "0.5.17",
   "description": "ts based flow-like store",
   "main": "index.ts",
   "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc --pretty",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
