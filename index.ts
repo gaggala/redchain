@@ -22,10 +22,28 @@ export interface store {
   <stateType, actionType>(initFunction: init<stateType>, reducer: reducer<stateType, actionType>): storeResult<stateType, actionType>;
 }
 
+/**
+ * the return value of a new created store looks like this
+ */
 export interface storeResult<stateType, actionType> {
+  /**
+   * this value gets replaced, each time the reducer gets called
+   */
   state: stateType;
+
+  /**
+   *  when the state property should change, thats the way to call it
+   */
   dispatch(action: actionType): storeResult<stateType, actionType>;
+
+  /**
+   *  eventlisteners when a dispatch caused a change in state
+   */
   addOnChange(onChange: onChangeCallback<actionType>): storeResult<stateType, actionType>;
+
+  /**
+   * when a eventlistener is not needed, this function should get called
+   */
   removeOnChange(removeOnChange: onChangeCallback<actionType>): boolean;
 }
 
