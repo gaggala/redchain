@@ -1,15 +1,25 @@
-type initialAction = {
-  type: 'store::init';
-};
-
 export type onChangeCallback<actionType> = ((lastAction: actionType) => void);
 
-export interface reducer<stateType, actionType> {
-  (state: stateType | null, action: actionType | initialAction): stateType;
+/**
+ * gets initially called when a new store gets created
+ * 
+ */
+export interface init<stateType> {
+  (): stateType;
 }
 
+/**
+ * gets called when a dispatch with an action is triggered
+ */
+export interface reducer<stateType, actionType> {
+  (state: stateType, action: actionType): stateType;
+}
+
+/**
+ * thats how a complete store is organized
+ */
 export interface store {
-  <stateType, actionType>(reducer: reducer<stateType, actionType>): storeResult<stateType, actionType>;
+  <stateType, actionType>(initFunction: init<stateType>, reducer: reducer<stateType, actionType>): storeResult<stateType, actionType>;
 }
 
 export interface storeResult<stateType, actionType> {
@@ -19,11 +29,15 @@ export interface storeResult<stateType, actionType> {
   removeOnChange(removeOnChange: onChangeCallback<actionType>): boolean;
 }
 
-const store: store = <stateType, actionType>(reducer: reducer<stateType, actionType>): storeResult<stateType, actionType> => {
+const store: store = <stateType, actionType>(initFunction: init<stateType>, reducer: reducer<stateType, actionType>): storeResult<stateType, actionType> => {
   let onChanges: onChangeCallback<actionType>[] = [];
 
   return {
-    state: reducer(null, { type: 'store::init' }),
+    /**
+     * holds the actual value of the current store
+     */
+    state: initFunction(),
+
     /**
      * this function triggers the reducer
      * when the returnvalue is unequal to the previous state it will trigger the listeners from addOnChange
@@ -44,6 +58,7 @@ const store: store = <stateType, actionType>(reducer: reducer<stateType, actionT
 
       return this;
     },
+
     /**
      * takes listeners, when the reducer returnvalue is triggered they
      */
