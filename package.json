@@ -1,8 +1,8 @@
 {
   "name": "redchain",
-  "version": "0.5.18",
+  "version": "0.5.19",
   "description": "ts based flow-like store",
-  "main": "dist/index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "prepublish": "npm run build",
     "build": "tsc --pretty",
