@@ -1,6 +1,6 @@
 {
   "name": "redchain",
-  "version": "0.5.19",
+  "version": "0.5.21",
   "description": "ts based flow-like store",
   "main": "dist/index.js",
   "scripts": {
