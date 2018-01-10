@@ -1,6 +1,6 @@
 {
   "name": "redchain",
-  "version": "0.5.25",
+  "version": "0.5.26",
   "description": "ts based flow-like store",
   "main": "dist/index.js",
   "scripts": {
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plusnew/plusnew.git"
+    "url": "git+https://github.com/plusnew/redchain.git"
   },
   "author": "Carlo Jeske",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/plusnew/plusnew/issues"
+    "url": "https://github.com/plusnew/redchain/issues"
   },
-  "homepage": "https://github.com/plusnew/plusnew#readme",
+  "homepage": "https://github.com/plusnew/redchain#readme",
   "devDependencies": {
     "tslint": "^5.8.0",
     "tslint-config-airbnb": "^5.3.0",
