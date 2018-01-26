@@ -10,12 +10,12 @@ The reducer will be called by the dispatch trigger, when value changed all liste
 ```js
 import redchain from 'redchain';
 
-const store = redchain(0, state: number => state + 1);
+const store = redchain(0, (previousState, action: number) => previousState + action);
 
 console.log(store.state); // 0
 
-store.dispatch();
+store.dispatch(2);
 
-console.log(store.state); // 1
+console.log(store.state); // 2
 
 ```

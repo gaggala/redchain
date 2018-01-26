@@ -4,7 +4,7 @@ export type onChangeCallback<actionType> = ((lastAction: actionType) => void);
  * gets called when a dispatch with an action is triggered
  */
 export interface reducer<stateType, actionType> {
-  (state: stateType, action: actionType): stateType;
+  (previousState: stateType, action: actionType): stateType;
 }
 
 /**
