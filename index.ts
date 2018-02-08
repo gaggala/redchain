@@ -23,7 +23,7 @@ export interface store<stateType, actionType> {
   /**
    *  when the state property should change, thats the way to call it
    */
-  dispatch(action: actionType): store<stateType, actionType>;
+  dispatch(action: actionType): boolean;
 
   /**
    *  eventlisteners when a dispatch caused a change in state
@@ -88,9 +88,10 @@ const store: redchain = <stateType, actionType>(initValue: stateType, reducer: r
         // If you have an opinion on this matter, please make a github issue and tell me
         onChange(action);
       });
+      return true;
     }
 
-    return this;
+    return false;
   }.bind(result);
 
   return result;
